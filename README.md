@@ -21,3 +21,10 @@ Notes:
 But best practice dictates you should just install modules locally in the project
 
 For modules that are used in production use the --save-prod flag instead of --save-dev
+
+
+# Mocha test runners in Visual Studio Code
+Once Mocha is installed, it will look for a 'test' folder to run the tests from
+Click on the test beaker on the side or go to 
+
+View > Open View... > Test
