@@ -26,13 +26,13 @@ For modules that are used in production use the --save-prod flag instead of --sa
 # Mocha test runners in Visual Studio Code
 Once Mocha is installed, it will look for a 'test' folder to run the tests from.
 
-Click on the test beaker on the side or go to 
+Click on the test beaker on the side or go to: 
 
 View > Open View... > Test
 
 # Running Mocha from the command line 
-While in the MochaTest directory, type:
+While in the project's root directory, type:
 
-./node_modules/mocha/bin/mocha MochaTest
+./node_modules/mocha/bin/mocha test
 
 This will run all the written tests
