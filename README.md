@@ -13,8 +13,8 @@ Had errors installing Mocha fixed by giving ownership to npm:
 	$ sudo chown -R $USER:$GROUP ~/.npm
 	$ sudo chown -R $USER:$GROUP ~/.config
 
-Notes:
-	You can install packages globally using:
+# Notes
+You can install packages globally using:
 	
 		$ npm i -g <package_name>
 		
@@ -33,6 +33,22 @@ View > Open View... > Test
 # Running Mocha from the command line 
 While in the project's root directory, type:
 
-./node_modules/mocha/bin/mocha test
+./node_modules/mocha/bin/mocha 
 
-This will run all the written tests
+This will run all the written tests located in files in the 'test' directory
+
+Other named directories must be specified:
+
+./node_modules/mocha/bin/mocha tests
+
+Targeting specific files:
+
+./node_modules/mocha/bin/mocha tests/test2.js
+
+Using globs to target all files that end with 1:
+
+./node_modules/mocha/bin/mocha tests/*1.js
+
+Using the glob flag to target all files with 2 in the name:
+
+./node_modules/mocha/bin/mocha -g 2 tests
