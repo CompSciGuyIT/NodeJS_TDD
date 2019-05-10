@@ -126,3 +126,66 @@ expect(badFn).to.throw();
 ```
 
 Complete API defined at http://www.chaijs.com/api/bdd  
+
+# Testing Asynchronous Code
+* Asynchronous calls return immediately and continue to run in the background  
+* They generally notify the caller that they have completed their work either via a _**callback function**_, a Javascript _**promise**_, or the new _**async/await**_ Javascript keywords  
+* Examples of asynchronous calls are:  
+	1. Timers (i.e. setTimeout)  
+	2. HTTP requests (i.e. http.get)  
+	3. Database operations  
+---
+### Async Testing of Callbacks  
+```
+function myAsyncFunction(callback){
+	setTimeout(function(){
+		callback("blah");
+	}, 50);
+}
+
+it('callback test', function(done){
+	myAsyncFunction(function(str){
+		expect(str).to.equal("blah");
+		done();
+	});
+});
+```
+* To test asynchronous code with callbacks, pass a _done_ parameter to your test  
+* This _done_ parameter is a callback function provided by Mocha  
+* Mocha will not complete the test until the _done_ callback has been called  
+---
+### Async Testing with Promises  
+```
+function promiseFunc(){
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve("blah");}, 50);
+	});
+}
+
+it("promise test", function(){
+	return promiseFunc().then(res => {
+		expect(res).to.equal("blah");
+	});
+});
+```
+* To test asynchronous code with promises, you simply return the promise from your test  
+* Mocha delays the test until the promise is resolved  
+---
+### Asynch Testing with Async/Await  
+```
+function promiseFunc(){
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve("blah");}, 50);
+	});
+}
+
+it("await test", async () => {
+	var res = await promiseFunc();
+	expect(res).to.equal("blah");
+});
+```
+* To test with the async/await keywords, specify _async_ on your unit test  
+* Inside your test, you then call _await_ on the asynchronous function that you're testing  
+* Yout unit test will return a promise which Mocha will wait to be resolved
