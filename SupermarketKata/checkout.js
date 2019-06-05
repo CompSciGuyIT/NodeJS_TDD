@@ -1,7 +1,7 @@
 module.exports = class Checkout{
     constructor(){
         this.prices = new Object();
-        this.total = 0;
+        this.items = new Object();
         this.discounts = new Object();
     }
 
@@ -10,11 +10,19 @@ module.exports = class Checkout{
     }
 
     addItem(item){
-        this.total += this.prices[item];
+        if(this.items[item] == undefined){
+            this.items[item] = 1;
+        } else {
+            this.items[item]++;
+        }
     }
 
     calculateTotal(){
-        return this.total;
+        var total = 0;
+        for(var item in this.items){
+            total += (this.prices[item] * this.items[item]);
+        }
+        return total;
     }
 
     addDiscount(item, itemCnt, discountPrice){
