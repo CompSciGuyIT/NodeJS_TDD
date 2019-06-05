@@ -29,13 +29,19 @@ module.exports = class Checkout{
         var total = 0;
         var discount = this.discounts[item];
         if(discount != undefined){
-            var nbrOfDiscounts = this.items[item] / discount.cnt;
-            total += nbrOfDiscounts * discount.price;
-            var remainder = this.items[item] % discount.cnt;
-            total += remainder * this.prices[item];
+            total += this.calculateDiscount(item, this.items[item], discount);
         } else {
             total += (this.prices[item] * this.items[item]);
         }
+        return total;
+    }
+
+    calculateDiscount(item, itemCnt, discount){
+        var total = 0;
+        var nbrOfDiscounts = itemCnt / discount.cnt;
+        total += nbrOfDiscounts * discount.price;
+        var remainder = itemCnt % discount.cnt;
+        total += remainder * this.prices[item];
         return total;
     }
 
