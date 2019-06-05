@@ -4,6 +4,10 @@ module.exports = class Checkout{
     }
 
     addItem(item){
-        
+
+    }
+
+    calculateTotal(){
+        return 1;
     }
 }
