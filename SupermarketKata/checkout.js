@@ -2,6 +2,7 @@ module.exports = class Checkout{
     constructor(){
         this.prices = new Object();
         this.total = 0;
+        this.discounts = new Object();
     }
 
     addItemPrice(item, price){
@@ -17,6 +18,6 @@ module.exports = class Checkout{
     }
 
     addDiscount(item, itemCnt, discountPrice){
-        
+        this.discounts[item] = {cnt:itemCnt, price:discountPrice};
     }
 }
