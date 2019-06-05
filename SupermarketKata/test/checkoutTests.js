@@ -11,3 +11,11 @@ it('Can calculate the current total', function(){
     checkout.addItem('a');
     expect(checkout.calculateTotal()).to.equal(1);
 });
+
+it('Can get correct total from multiple added items', function(){
+    checkout.addItemPrice('a', 1);
+    checkout.addItemPrice('b', 2);
+    checkout.addItem('a');
+    checkout.addItem('b');
+    expect(checkout.calculateTotal()).to.equal(3);
+});
