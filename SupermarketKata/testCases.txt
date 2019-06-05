@@ -5,4 +5,4 @@
 + Can add multiple items and get correct total
 + Can add discount rules
 + Can apply discount rules to the total
-- Exception is thrown for item added without price
++ Exception is thrown for item added without price

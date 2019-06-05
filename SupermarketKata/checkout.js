@@ -10,6 +10,10 @@ module.exports = class Checkout{
     }
 
     addItem(item){
+        if(this.prices[item] == undefined){
+            throw('No price defined for item ', item);
+        }
+
         if(this.items[item] == undefined){
             this.items[item] = 1;
         } else {
@@ -22,6 +26,7 @@ module.exports = class Checkout{
         for(var item in this.items){
             total += this.calculateItemTotal(item);
         }
+        
         return total;
     }
 
@@ -33,6 +38,7 @@ module.exports = class Checkout{
         } else {
             total += (this.prices[item] * this.items[item]);
         }
+
         return total;
     }
 
@@ -42,6 +48,7 @@ module.exports = class Checkout{
         total += nbrOfDiscounts * discount.price;
         var remainder = itemCnt % discount.cnt;
         total += remainder * this.prices[item];
+        
         return total;
     }
 
