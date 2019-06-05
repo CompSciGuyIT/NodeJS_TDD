@@ -22,3 +22,11 @@ it('Can get correct total from multiple added items', function(){
 it('Can add discount rule', function(){
     checkout.addDiscount('a', 3, 2);
 });
+
+xit('Can apply discount rules to total', function(){
+    checkout.addDiscount('a', 3, 2);
+    checkout.addItem('a');
+    checkout.addItem('a');
+    checkout.addItem('a');
+    expect(checkout.calculateTotal()).to.equal(2);
+});
